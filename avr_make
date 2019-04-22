@@ -1,0 +1,14 @@
+http://robocraft.ru/blog/arduino/116.html
+
+В комплекте Arduino IDE уже идёт WinAVR (\hardware\tools\avr\), поэтому можно воспользоваться им. 
+В папке WinAVR\sample лежит образец, но там многабуков
+поэтому возьмём Makefile-образец из этой статьи на Хабре https://habr.com/ru/post/247663/
+ При выполнеии команды >make ошибок не возникает
+ Далее при выполнении команды >make flash появляется ошибка
+ specify a programmer using the -c option and try again
+ 
+ В коменнтариях файла Makrfile-обраец написано следущее
+ # Type: avrdude -c ?
+# to get a full listing.
+Просто добавим программатор (необходим ключ -p) atmega328
+
