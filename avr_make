@@ -2,13 +2,19 @@ http://robocraft.ru/blog/arduino/116.html
 
 В комплекте Arduino IDE уже идёт WinAVR (\hardware\tools\avr\), поэтому можно воспользоваться им. 
 В папке WinAVR\sample лежит образец, но там многабуков
-поэтому возьмём Makefile-образец из этой статьи на Хабре https://habr.com/ru/post/247663/
+поэтому можно взять Makefile-образец из этой статьи на Хабре https://habr.com/ru/post/247663/
  При выполнеии команды >make ошибок не возникает
  Далее при выполнении команды >make flash появляется ошибка
  specify a programmer using the -c option and try again
  
  В коменнтариях файла Makrfile-обраец написано следущее
  # Type: avrdude -c ?
-# to get a full listing.
-Просто добавим программатор (необходим ключ -p) atmega328
+ # to get a full listing.
+Значит можно посмотреть значения ключей командой "avrdude -c"
+
+Добавим программатор ключом p (т.е.) -p atmega328 
+тогда настройки будут такими:
+AVRDUDE = avrdude -c arduino -P C0M3 -b19200 -D -p atmega328
+Ключ -C avrdude.conf указывать не нужно. Компилятор возьмёт настройки из avrdude.conf, если файл
+avrdude.conf лежит в той же папке C:\WinAVR\bin
 
