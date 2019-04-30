@@ -22,8 +22,21 @@ deb http://archive.canonical.com/ubuntu xenial partner
 deb-src http://archive.canonical.com/ubuntu xenial partner
 
 
-
 Затем выполнить:
 echo 'deb http://www.tataranovich.com/debian xenial main' | sudo tee /etc/apt/sources.list.d/mc.list
 sudo apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 0x836CC41976FB442E
 sudo apt-get update && sudo apt-get upgrade
+
+#####################################################3
+https://forum.ubuntu.ru/index.php?topic=152785.0
+### sudo apt-key adv --keyserver
+Здравствуйте.
+Помогите разобраться пожалуйста.
+Linux Mint 10. Воспользовался генератором sources.list. Получил его, поставил в систему. Генератор еще выдал ключи, типа: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9A6FE242. Запускаю в терминале, так не один не установился. Ругается что нет его, ключа.
+Что делать с этими ключами?
+
+Re: sudo apt-key adv --keyserver
+
+Волшебная команда, которая автоматически найдет и добавит нужные ключи безопасности подключенных репозиториев:
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com `sudo aptitude update 2>&1 | grep -o '[0-9A-Z]\{16\}$' | xargs`
+
