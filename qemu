@@ -1,0 +1,9 @@
+https://linuxthebest.net/qemu-v-ubuntu-16-04linux-mint-18/
+
+qemu-img create ubuntu.img 20G
+
+qemu-system-i386 -hda ubuntu.img -boot d -cdrom /home/linuxthebest/Загрузки/ubuntu-15.04-server-amd64.iso -m 1024
+
+После завершения установки, систему можно загрузить с помощью команды:
+
+qemu -hda ubuntu.img -m 1024
