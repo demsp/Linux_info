@@ -7,3 +7,7 @@ qemu-system-i386 -hda ubuntu.img -boot d -cdrom /home/linuxthebest/Загруз�
 После завершения установки, систему можно загрузить с помощью команды:
 
 qemu -hda ubuntu.img -m 1024
+
+freedos FD12CD.iso
+qemu-img create freedos.img 1G
+
