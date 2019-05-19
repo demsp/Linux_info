@@ -8,3 +8,5 @@ qemu -hda ubuntu.img -m 1024
 freedos FD12CD.iso
 qemu-img create freedos.img 1G
 
+https://tolik-punkoff.livejournal.com/354482.html
+
