@@ -1,0 +1,15 @@
+play 300 200 2 100 2
+
+загрузка с флешки
+set root=(hd1)
+chainloader +1
+boot
+
+ls
+ls (hd0,5)
+
+загрузка с диска
+set root=(hd0,5)
+linux /boot/vmlinuz-4.4.0-146-generic root=/dev/sda5 single
+initrd /boot/initrd.img-4.4.0-146-generic
+boot
