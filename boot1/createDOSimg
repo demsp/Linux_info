@@ -1,4 +1,7 @@
-Сначала монтируем диск с досом
+https://www.linux.org.ru/forum/general/1645135
+Знаешь почему iso'шники имеют расширение 'iso' ? Потому что на них файловая система iso9660.
+
+монтируем диск с досом
 demsp@demsp:~$ mount /home/demsp/dos/dossys
 mount: can't find /home/demsp/dos/dossys in /etc/fstab
 
