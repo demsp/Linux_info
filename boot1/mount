@@ -1,3 +1,16 @@
 https://www.ibm.com/developerworks/ru/library/l-lpic1-v3-102-1/
 
 https://help.ubuntu.ru/wiki/монтирование_образов_дисков
+
+Создаём место, куда мы будем монтировать (обычно где-нибудь в /media или /mnt)
+
+sudo mkdir /media/iso
+
+ну и подключаем
+
+sudo modprobe loop
+sudo mount file.iso /media/iso/ -t iso9660 -o loop
+
+Отключаем командой:
+
+sudo umount /media/iso/
