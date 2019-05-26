@@ -1,2 +1,7 @@
 Сначала монтируем диск с досом
-mount /home/demsp/dos/dossys
+demsp@demsp:~$ mount /home/demsp/dos/dossys
+mount: can't find /home/demsp/dos/dossys in /etc/fstab
+
+Создаём в папке /etc/fstab папку dossys под суперпользователем
+
+
