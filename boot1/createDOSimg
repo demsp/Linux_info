@@ -2,6 +2,10 @@
 demsp@demsp:~$ mount /home/demsp/dos/dossys
 mount: can't find /home/demsp/dos/dossys in /etc/fstab
 
-Создаём в папке /etc/fstab папку dossys под суперпользователем
-
+Файл /etc/fstab: static file system information.
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda5 during installation
+UUID=f582ef27-f813-42a0-a7d9-af52ee6f1755 /               ext4    errors=remount-ro 0       1
+# swap was on /dev/sda6 during installation
+UUID=b998f8f6-413a-4881-b877-a378ba6126fe none            swap    sw              0       0
 
