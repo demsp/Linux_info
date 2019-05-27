@@ -19,5 +19,6 @@ _подключаем образ загрузочной дискеты
 _смотрим структуру разделов
 fdisk -l /path/to/image
 sudo mount -t auto -o loop,offset=0 FLOPPY.img part1
+sudo umount FLOPPY.img part1
 
 
