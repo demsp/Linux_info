@@ -4,10 +4,20 @@ https://www.ibm.com/developerworks/ru/library/l-lpic1-v3-102-1/
 https://habr.com/ru/post/116907/
 
 https://help.ubuntu.ru/wiki/монтирование_образов_дисков
-Создаём место, куда мы будем монтировать (обычно где-нибудь в /media или /mnt)
+_Создаём место, куда мы будем монтировать (обычно где-нибудь в /media или /mnt)
 sudo mkdir /media/iso
-ну и подключаем
+_ну и подключаем
 sudo modprobe loop
 sudo mount file.iso /media/iso/ -t iso9660 -o loop
-Отключаем командой:
+_Отключаем командой:
 sudo umount /media/iso/
+
+https://www.linuxquestions.org/questions/linux-general-1/how-to-mount-img-file-882386/
+https://stefanoprenna.com/blog/2014/09/22/tutorial-how-to-mount-raw-images-img-images-on-linux/
+_подключаем образ загрузочной дискеты
+
+_смотрим структуру разделов
+fdisk -l /path/to/image
+sudo mount -t auto -o loop,offset=0 FLOPPY.img part1
+
+
