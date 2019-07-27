@@ -1,3 +1,4 @@
+\ $gforth main.fth -e bye
 \ hello world forth program.
 .( Hello World!) CR 
 1 2 + . 
