@@ -1,0 +1,5 @@
+\ hello world forth program.
+.( Hello World!) CR 
+1 2 + . 
+: POW DUP * . ;
+4 POW 
