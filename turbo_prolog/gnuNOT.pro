@@ -9,4 +9,4 @@ border(france,germany).
 border(france,spain).
 border(france,italy).
 
-/* euro_pair(X,Y), not(border(X,Y)) */
+/* euro_pair(X,Y), \+(border(X,Y)) */
