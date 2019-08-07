@@ -1,0 +1,58 @@
+https://myslide.ru/presentation/92374_logicheskie-zadachi
+
+На одной улице стоят 4 дома. В каждом доме живёт человек - обозначим людей "A", "B", "C", "D".
+У них разные профессии: водитель, программист, аптекарь, строитель.
+1. Строитель живёт с краю.
+2. Строитель живёт возле водителя.
+3. Программист живёт левее аптекаря.
+4. Аптекарь живёт правее строителя.
+5. "С" - не строитель.
+6. "B" живёт правее программиста.
+7. "A" проживает через дом от "B"
+DACB
+
+http://verim.org/project/prolog/otricanie
+
+Утверждения для стран с общей границей выглядят так:
+border(“France”,”Germany”).
+border(“France”,”Spain”).
+border(«France»,«Italy»).
+Используя отрицание можно определить, какие из стран не имеют общей границы.
+
+Отрицание предиката border задается при помощи предиката not:
+not(border(Country1,Country2)).
+
+Этот предикат выдает все пары не граничащих друг с другом стран.
+
+/* Программа: "Подбор стран, которые не имеют общих границ" */
+ 
+domains
+country = symbol 
+predicates
+euro_pair(country,country) /* пары стран */
+border(country,country) /* пара стран с общей границей */
+find_non_border_pair /* пара стран без общей границы */ 
+clauses
+/* факты - пары для четырёх стран */
+euro_pair("France","Germany").
+euro_pair("France","Spain").
+euro_pair("France","Italy").
+euro_pair("Germany","Spain").
+euro_pair("Germany","Italy").
+euro_pair("Spain","Italy"). 
+/* пара стран без общей границы */
+border("France","Germany").
+border("France","Spain").
+border("France","Italy").
+ 
+/* правило - пара стран не имеет общей границы, если существует вообще такая пара и этой пары не в списке пар с общей границей */
+find_non_border_pair :- euro_pair(X,Y), not(border(X,Y)), write("No border ",X," with ",Y),nl.
+ 
+goal
+find_non_border_pair.
+
+Результат:
+No border Germany with Spain
+No border Germany with Italy
+No border Spain with Italy
+
