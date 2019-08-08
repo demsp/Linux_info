@@ -1,0 +1,32 @@
+fruit(pears).         /* фрукт - персики */
+ fruit(apples).
+  
+candies(lollipop). 
+ candies(chocolate).
+ candies(caramel);   
+   
+
+likes(mary,pears).    /* Мэри любит персики */  
+  likes(mary,apples).   /* Мэри любит яблоки */
+  
+ likes(mary,lollipop).   /* Мэри любит яблоки */
+  ikes(mary,chocolate).   /* Мэри любит яблоки */
+  
+likes(mary,popcorn).  /* Мэри любит кукурузные зерна */
+  
+ 
+  likes(beth,X) :-      /* Бет любит то, */
+  likes(mary,X),        /* что любит Мэри, */
+  fruit(X).             /* если это фрукт, */
+  %color(X,red).         /* и если он красный */
+ 
+  likes(beth,X) :-      /* Бет любит то, */
+   likes(mary,X),        /* что любит Мэри, */
+   X=popcorn.            /* если это кукурузные зерна */
+  
+  likes(sally,X) :-      /* Бет любит то, */
+   likes(mary,X),        /* что любит Мэри, */
+   candies(X).
+   
+  likes(sally,X) :-
+   X=caramel.
