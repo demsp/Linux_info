@@ -1,0 +1,11 @@
+% http://verim.org/project/prolog/povtorenie_i_rekursija
+
+plays(tom,football) /* Том играет в американский футбол */
+plays(john,soccer) /* Джон играет в европейский  футбол */
+plays(john,volleyball) /* Джон играет в волейбол*/
+plays(tom,basketball)/* Том играет в баскетбол*/
+plays(tom,volleyball)/* Том играет в волейбол */
+plays(john,baseball) /* Джон играет в бейсбол*/
+
+% Задача программы определить, в какую игру одновременно играют Джон и Том.
+% plays(john,G),plays(tom,G).
