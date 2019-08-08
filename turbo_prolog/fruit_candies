@@ -50,3 +50,50 @@ likes(mary,popcorn).  /* Мэри любит попкорн */
    
    /*  likes(beth,X).
    likes(sally,X).   */
+   
+   %*******************************
+   % color
+   
+ fruit(pears).         /* фрукт - персики */
+  fruit(apples).
+   fruit(oranges).
+ 
+ color(pears,yellow).  /* желтые персики */
+  color(oranges,orange).  /* оранжевые апельсины */
+   color(apples,red).    /* красные яблоки */
+    color(apples,yellow). /* желтые яблоки */
+  
+candies(lollipop). 
+ candies(chocolate).
+  candies(caramel).   
+   
+
+likes(mary,pears).    /* Мэри любит персики */  
+  likes(mary,apples).   /* Мэри любит яблоки */
+   likes(mary,orange).   /* Мэри любит апельсины */
+  
+ likes(mary,lollipop).   /* Мэри любит леденцы */
+  likes(mary,chocolate).   /* Мэри любит шоколад */
+  
+likes(mary,popcorn).  /* Мэри любит кукурузные зерна */
+ 
+  likes(beth,X) :-      /* Бет любит то, */
+  likes(mary,X),        /* что любит Мэри, */
+  fruit(X),             /* если это фрукт, */
+  color(X,red).         /* и если он красный */
+ 
+  likes(beth,X) :-      /* Бет любит то, */
+  likes(mary,X),        /* что любит Мэри, */
+  X=popcorn.            /* если это кукурузные зерна */
+ 
+  likes(sally,X) :-      /* Бет любит то, */
+   likes(mary,X),        /* что любит Мэри, */
+   candies(X).
+   
+  likes(sally,X) :-
+   X=caramel.
+   
+/*  likes(beth,X).
+   likes(sally,X).   
+   
+ */
