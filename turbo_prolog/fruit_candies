@@ -93,7 +93,13 @@ likes(mary,popcorn).  /* Мэри любит кукурузные зерна */
   likes(sally,X) :-
    X=caramel.
    
-/*  likes(beth,X).
-   likes(sally,X).   
+ whats_beth_like :- 
+  likes(beth,X),
+  write("Beth likes"),nl,
+  write(X), nl.  
+   
+/* likes(beth,X).
+   likes(sally,X).
+   whats_beth_like. 
    
  */
