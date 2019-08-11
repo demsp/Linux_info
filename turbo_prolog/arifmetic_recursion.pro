@@ -9,3 +9,10 @@ nextNum(A,B) :-
   
   % nextNum(1,10).    
  
+% вывести числа с X по Y
+
+fromXtoY(X,Y) :-
+  X < Y,    
+   Next_X is X+1,   	 
+     write(Next_X),nl,      
+      fromXtoY(Next_X,Y). 
