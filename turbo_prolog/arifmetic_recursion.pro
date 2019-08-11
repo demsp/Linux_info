@@ -7,7 +7,7 @@ nextNum(A,B) :-
      write(A),nl,      
      nextNum(Next_A,B). 
   
-  % nextNum(1,10).    
+% nextNum(1,10).    
  
 % вывести числа с X по Y
 fromXtoY(X,Y) :-
