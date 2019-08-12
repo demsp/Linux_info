@@ -1,0 +1,7 @@
+% https://pro-prof.com/archives/845 
+    
+    reverse(List, ReverseList):-
+       reverse(List, [], ReverseList). % вызов вспомогательной функции с пустым буфером
+    reverse([], Buffer, Buffer):-!.
+    reverse([Head|Tail], Buffer, ReverseList):-
+       reverse(Tail, [Head|Buffer], ReverseList).
