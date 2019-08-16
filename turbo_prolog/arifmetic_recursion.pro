@@ -15,3 +15,9 @@ fromXtoY(X,Y) :-
    Next_X is X+1,   	 
      write(Next_X),nl,      
       fromXtoY(Next_X,Y). 
+% вывести числа с Lim по 0
+fromLimtoZero(N) :- 
+ N > 0, 
+ N1 is N-1, 
+ write(N1),nl, 
+ fromLimtoZero(N1).    
