@@ -34,6 +34,12 @@ fa(cc,dd).
 fa(dd,ee).
 fa(ee,ff).
 fa(ff,gg).
+| ?- fa(F,ee),fa(G,F).
+F = dd
+G = cc ? ;
+no
+
+
 predecessor( X, Z) :- fa( X, Z).
 predecessor( X, Z) :- fa( X, Y), predecessor( Y, Z).
 
