@@ -1,0 +1,9 @@
+https://www.doc.gold.ac.uk/~mas02gw/prolog_tutorial/prologpages/lists.html
+
+
+p([H|T], H, T).
+Lets see what happens when we ask some simple queries.
+?- p([a,b,c], X, Y).
+X=a
+Y=[b,c]
+yes
