@@ -1,10 +1,15 @@
 % https://pro-prof.com/archives/845
 
-sum_list([], 0):-!.
- sum_list([Head|Tail], Sum):-
-    sum_list(Tail, TailSum),
-    Sum is TailSum + Head.
+summa_list([], 0):-!.
+ summa_list([Head|Tail], Sum):-
+   summa_list(Tail, TailSum),
+     Sum is TailSum + Head.
 
-?- sum_list([1,2,3],X).
+?- summa_list([1,2,3],X).
+
+native code procedure sum_list is for sum of list
+?-sum_list([1,2,2],X).
+
+
 
 
