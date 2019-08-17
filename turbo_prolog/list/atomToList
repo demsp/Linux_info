@@ -1,0 +1,113 @@
+https://stackoverflow.com/questions/22441538/prolog-appending-a-list-and-a-atom
+
+The list notation [H|T] is a syntactic sugar for '.'(H,T) which is the predicate defining the list by head and tail. For example, the list [1,2,3] could also be written '.'(1,'.'(2,'.'(3,[]))). (try, X = '.'(1,'.'(2,'.'(3,[]))). at the prolog prompt).
+
+Since you seem familiar with Lisp, then in those terms, X is the car of the list [X|T] and T is the cdr of the list [X|T].
+
+append/3 is typically used with list arguments, so to append an atom (called atom) to a list L and result being R, you'd do it like this:
+
+append(L, [atom], R).
+
+Or more specifically:
+
+append([1], [2], R).
+
+Yields: R = [1,2].
+
+In using append/3 to define an implementation for rev/2, Clocksin & Mellish, Programming in Prolog, Fifth Edition, on p.157 state, in that context:
+
+    By convention, the tail of a list is always a list.
+
+If you're given a list, L, you can retrieve the head (car) and tail (cdr) by unifying it with the [H|T] form:
+
+L = [H|T]
+
+For example:
+
+| ?- L = [1,2,3,4], L = [H|T].
+
+H = 1
+L = [1,2,3,4]
+T = [2,3,4]
+
+yes
+| ?-
+
+You can also pull off as may elements as you wish:
+
+| ?- L = [1,2,3,4], L = [A,B,C|T].
+
+A = 1
+B = 2
+C = 3
+L = [1,2,3,4]
+T = [4]
+
+yes
+
+It will fail if you try to do too many:
+
+| ?- L = [1,2,3], L = [A,B,C,D|T].
+
+no
+
+The [H|T] form is handy in list processing predicates, particularly recursive ones:
+
+my_list_process_predicate([H|T], [Result|Results]) :-
+    % Do some stuff here, determing "Result" from "H" perhaps
+    my_list_processing_predicate(T, Results).  % Get the rest of the results
+                                               % from the rest of the list
+
+If you were to write a list, say, [1,2,3] literally in the [H|T] form, you'd have any of the following equivalents:
+
+[1,2,3|[]]
+[1,2|[3]]
+[1,2|[3|[]]]
+[1|[2,3]]
+[1|[2,3|[]]]
+[1|[2|[3]]]
+[1|[2|[3|[]]]]
+
+
+The list form [H|T] when T is an atom
+
+If you have a list [X|T], means X is the head of the list, and T is the tail (usually a list itself). Although Prolog lets you 
+construct such a list in which T is an atom, it doesn't seem commonly used, at least not as it is in Lisp. 
+But, yes, [1|2] is indeed like (1 . 2) in Lisp. Lisp has some built-in functions which operate on lists of (a . b) as key-value pairs,
+etc. Prolog doesn't have any built-ins that take advantage of the [a|b] structure that I'm aware of. They may have no more advantage
+over just using [a,b]. I also have searched for references to the [a|b] (or [a1,...,an|b]) form and found one in Clocksin & Mellish,
+p.53, in reference to an example unifying [white|Q] with [P|horse]:
+
+ ...it is possible to use the list notation to create structures that resemble lists, but which do not terminate with the empty list.
+ One such structure, [white|horse], denotes a structure having head white and tail horse. The constant horse is neither a list nor the
+ empty list, and ... such structures should be treated carefully when used at the tail of a list.
+
+The interesting thing is that most of the other built-in Prolog predicates that process a list will actually fail when given
+the [a1,...,an|b] form. For example, in GNU Prolog:
+
+| ?- X = [1,2,3|4], length(X, L).
+
+no
+| ?- X = [1,2,3,4], length(X, L).
+
+L = 4
+X = [1,2,3,4]
+
+yes
+
+SWI Prolog throws an exception:
+
+?- X = [1,2,3|4], length(X, L).
+ERROR: length/2: Type error: `list' expected, found `4'
+
+Similar results occur with other predicates. maplist will work on all of the elements of such a list but will ignore the tail atom. 
+append/3 will work as long as the first list does not have an atom as its tail.
+
+The question about atom as tail in a list is a very good one. It seems Prolog allows it (you can unify X=[1|2]. for example), 
+and the append/3 built-in handles it (perhaps inadvertently due to its simple design). I can be used as a valid form for data,
+[a1,...,an|b] and can be unified with forms that look like it. But most of the built-ins don't seem to consciously handle it properly.
+It also isn't acting as a generic 2-argument functor (attempt to unify X=3|4. would fail).
+
+So, the form [a1,...,an|b] (where b is an atom) is a valid Prolog data structure, but it's behavior as a list must be
+handled carefully since most predicates assume that the tail of a list is a list, and that the "final" tail is the empty list, []. 
+So it can be legitimately used if desired, but with caution (as C&M indicate).
