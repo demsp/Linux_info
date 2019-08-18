@@ -1,0 +1,9 @@
+apend_atom(Atom,List,Result):-append([Atom],List,Result).
+ apend_atom(Atom,Result):-append([Atom],[0],Result).
+
+?- apend_atom(5,[1,2],R).
+R = [5,1,2]
+?- apend_atom(5,R).
+R = [5,0].
+
+
