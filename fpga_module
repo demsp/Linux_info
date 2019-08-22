@@ -1,0 +1,86 @@
+module dff_w_r // dff whith reset
+(
+input [0:0] clk, 
+input [0:0] d, 
+input [0:0] dff_reset, 
+output reg [0:0] q 
+);
+always @(posedge clk or posedge dff_reset)
+if (dff_reset)
+q <= 1'b0;
+else
+q <= d;
+endmodule
+
+module keyboardPS2 #(parameter Zero = 1'b0)
+// `define Zero  0
+(
+   input clk,
+	input data,
+	//dff
+	input _dff_reset,
+	//output wire dffLED,
+	output wire [3:0] dffLED,
+	
+	output wire  clkLED,
+   output [3:0] counterLED,
+	output wire or_4_1,
+	output wire MUX1, MUX2
+);
+assign MUX1 = sel1? Zero : clk; //sel ? d1 : d0;
+assign MUX2 = sel2 ? Zero : data;
+wire sel1 = MUX2;
+   reg [3:0]counter; 
+   always @(posedge MUX1)
+  counter <= counter + 1;
+  //couunter
+ assign or_4_1 = |counter;
+ wire sel2 = or_4_1;
+ //output LEDs
+ assign clkLED = clk;
+ assign counterLED = counter;
+ 
+ //dff0
+dff_w_r dff0(
+ .clk(MUX1), // clock input
+ .d(data), // data input
+ .dff_reset(_dff_reset),
+ .q(dffLED[0])
+);
+//dff1
+dff_w_r dff1(
+ .clk(MUX1), // clock input
+ .d(dffLED[0]), // data input
+ .dff_reset(_dff_reset),
+ .q(dffLED[1])
+);
+//dff2
+dff_w_r dff2(
+ .clk(MUX1), // clock input
+ .d(dffLED[1]), // data input
+ .dff_reset(_dff_reset),
+ .q(dffLED[2])
+);
+//dff3
+dff_w_r dff3(
+ .clk(MUX1), // clock input
+ .d(dffLED[2]), // data input
+ .dff_reset(_dff_reset),
+ .q(dffLED[3])
+);
+endmodule
+###########################
+module counter_or
+(
+     input   key, 
+    output wire  clk_led,
+    output  [3:0] counter_led,
+    output or_4_1 
+);   
+   reg [3:0]counter; 
+   always @(posedge key)
+  counter <= counter + 1'd1;
+  assign clk_led = key;
+  assign counter_led = counter;
+  assign or_4_1 = |counter; 
+endmodule
