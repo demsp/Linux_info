@@ -1,0 +1,16 @@
+declare X Y
+X={NewCell 0}
+X:=5
+Y=X
+{Show X}
+Y:=10
+{Show X}
+{Show @X==10}
+{Show 5*5}
+declare
+fun {Fact N}
+   if N==0 then 1 else N*{Fact N-1} end
+end
+{Show {Fact 2}}
+{Show {Fact 3}}
+{Show {Fact 4}}
